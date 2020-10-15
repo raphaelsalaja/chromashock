@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4886753703999166574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7199175558004675601}
+  - component: {fileID: 4104137391224069870}
+  m_Layer: 0
+  m_Name: RoomTemplates
+  m_TagString: Rooms
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7199175558004675601
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4886753703999166574}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4104137391224069870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4886753703999166574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a50189f1e8cbb4191686c460b468f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bottomRooms:
+  - {fileID: 4424251567320229234, guid: 131cbdee15a85cb47b64610c74a8ff72, type: 3}
+  - {fileID: 5801826352451702023, guid: 58556236b113ec345a29a9eb8be87df0, type: 3}
+  - {fileID: 4029839735948832398, guid: a9656dff2f3f23242bb418019209a0a2, type: 3}
+  - {fileID: 4164354623789420426, guid: 9ad4a14e0e2908b478528e48eb7514b3, type: 3}
+  - {fileID: 2616013578297875592, guid: 8af3a237b816c61479c9ff04c7b9949e, type: 3}
+  - {fileID: 1851264672068520386, guid: 7626305bf40fb104190e4a7e95c4e3f9, type: 3}
+  - {fileID: 7153399883364304074, guid: 98396290df5c4864aac1c0926e13e9ab, type: 3}
+  - {fileID: 919191580706027596, guid: 0a40afd1da037034dbdf2e48ac9b8f70, type: 3}
+  topRoooms:
+  - {fileID: 4209201830663194741, guid: 03f2d27d67c07ff4082a68788890d7da, type: 3}
+  - {fileID: 4029839735948832398, guid: a9656dff2f3f23242bb418019209a0a2, type: 3}
+  - {fileID: 8374236501854354056, guid: 73cbad01591958e4ab80d15e6e78e09e, type: 3}
+  - {fileID: 5801826352451702023, guid: 58556236b113ec345a29a9eb8be87df0, type: 3}
+  - {fileID: 7377277915733478180, guid: 26eb1cdb2746b99488920c59db7dc8c7, type: 3}
+  - {fileID: 1723071892076552205, guid: b3502aa025c88f1469c0453fe0afb425, type: 3}
+  - {fileID: 4424251567320229234, guid: 131cbdee15a85cb47b64610c74a8ff72, type: 3}
+  - {fileID: 919191580706027596, guid: 0a40afd1da037034dbdf2e48ac9b8f70, type: 3}
+  leftRooms:
+  - {fileID: 919191580706027596, guid: 0a40afd1da037034dbdf2e48ac9b8f70, type: 3}
+  - {fileID: 8374236501854354056, guid: 73cbad01591958e4ab80d15e6e78e09e, type: 3}
+  - {fileID: 5801826352451702023, guid: 58556236b113ec345a29a9eb8be87df0, type: 3}
+  - {fileID: 7377277915733478180, guid: 26eb1cdb2746b99488920c59db7dc8c7, type: 3}
+  - {fileID: 2616013578297875592, guid: 8af3a237b816c61479c9ff04c7b9949e, type: 3}
+  - {fileID: 1851264672068520386, guid: 7626305bf40fb104190e4a7e95c4e3f9, type: 3}
+  - {fileID: 2369709362382127381, guid: 4890a3d09e9717347abaf18ab4d77f32, type: 3}
+  - {fileID: 8676810918641042080, guid: f5647e69fc2576944876e88d88b24f46, type: 3}
+  rightRooms:
+  - {fileID: 1851264672068520386, guid: 7626305bf40fb104190e4a7e95c4e3f9, type: 3}
+  - {fileID: 7153399883364304074, guid: 98396290df5c4864aac1c0926e13e9ab, type: 3}
+  - {fileID: 8676810918641042080, guid: f5647e69fc2576944876e88d88b24f46, type: 3}
+  - {fileID: 4321504026347815313, guid: a219d4201729c7146b026fd13483361a, type: 3}
+  - {fileID: 919191580706027596, guid: 0a40afd1da037034dbdf2e48ac9b8f70, type: 3}
+  - {fileID: 7377277915733478180, guid: 26eb1cdb2746b99488920c59db7dc8c7, type: 3}
+  - {fileID: 1723071892076552205, guid: b3502aa025c88f1469c0453fe0afb425, type: 3}
+  - {fileID: 4424251567320229234, guid: 131cbdee15a85cb47b64610c74a8ff72, type: 3}
