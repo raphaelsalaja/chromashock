@@ -285,6 +285,8 @@ MonoBehaviour:
   - {fileID: 6383885868699148515, guid: 2ee08f27d0e608e44acb7bedf8aab64e, type: 3}
   wallCorner_RB_tiles:
   - {fileID: 170029259873553520, guid: 3e11e215bbb93b4478d6ef526fc5d183, type: 3}
+  wallSingularTiles:
+  - {fileID: 7869993399194502823, guid: f9e229620b809c5439720ec2130db873, type: 3}
   bottomWallTiles:
   - {fileID: 1750155634259719572, guid: 3175501a1a565494285d633fa041d397, type: 3}
   decorTiles: []

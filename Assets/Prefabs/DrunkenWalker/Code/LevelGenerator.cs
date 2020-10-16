@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
@@ -11,8 +12,8 @@ public class LevelGenerator : MonoBehaviour
         wallRight,
         wallLeft,
         wallTop,
-        wallCorner_LT, wallCorner_LB, wallCorner_RT, wallCorner_RB,
-        bottomWall,
+        wallCorner_LT, wallCorner_LB, wallCorner_RT, wallCorner_RB, wallSingular,
+        wallBottom,
         decor,
     };
 
@@ -35,7 +36,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject[] wallCorner_LB_tiles;
     public GameObject[] wallCorner_RT_tiles;
     public GameObject[] wallCorner_RB_tiles;
-
+    public GameObject[] wallSingularTiles;
 
     public GameObject[] bottomWallTiles;
     public GameObject[] decorTiles;
@@ -55,19 +56,68 @@ public class LevelGenerator : MonoBehaviour
     private void Awake()
     {
         Setup();
-        CreateFloors();
-        CreateWalls();
-        CreateBottomWalls();
-        CreateSideWalls();
-        CreateCornerWalls();
-        RemoveSingleWalls();
-        RemoveSingleGroundWalls();
+        CreateAndRemoveWalls();
         SpawnLevel();
         SpawnPlayer();
         SpawnExit();
     }
 
-    #region Setups
+    private void CreateAndRemoveWalls()
+    {
+        CreateFloors();
+        CreateWalls();
+        CreateBottomWalls();
+        CreateSideWalls();
+        CreateCornerWalls();
+        CreateSingleWalls();
+        RemoveSingleWalls();
+    }
+
+    private void CreateSingleWalls()
+    {
+        //loop though every grid space
+        for (int x = 0; x < levelWidth - 1; x++)
+        {
+            for (int y = 0; y < levelHeight - 1; y++)
+            {
+                //if theres a wall, check the spaces around it
+                bool isWall = wallCheck(x, y);
+
+                if (isWall)
+                {
+                    //assume all space around wall are floors
+                    bool allFloors = true;
+                    //check each side to see if they are all floors
+                    for (int checkX = -1; checkX <= 1; checkX++)
+                    {
+                        for (int checkY = -1; checkY <= 1; checkY++)
+                        {
+                            if (x + checkX < 0 || x + checkX > levelWidth - 1 ||
+                                y + checkY < 0 || y + checkY > levelHeight - 1)
+                            {
+                                //skip checks that are out of range
+                                continue;
+                            }
+                            if ((checkX != 0 && checkY != 0) || (checkX == 0 && checkY == 0))
+                            {
+                                //skip corners and center
+                                continue;
+                            }
+                            if (grid[x + checkX, y] != LevelTile.floor)
+                            {
+                                allFloors = false;
+                            }
+                        }
+                    }
+                    if (allFloors)
+                    {
+                        grid[x, y] = LevelTile.wallSingular;
+                    }
+                }
+            }
+        }
+
+    }
 
     private void Setup()
     {
@@ -121,7 +171,7 @@ public class LevelGenerator : MonoBehaviour
                         Spawn(x, y, wallRightTiles[UnityEngine.Random.Range(0, wallRightTiles.Length)]);
                         break;
 
-                    case LevelTile.bottomWall:
+                    case LevelTile.wallBottom:
                         Spawn(x, y, bottomWallTiles[UnityEngine.Random.Range(0, bottomWallTiles.Length)]);
                         break;
 
@@ -130,7 +180,7 @@ public class LevelGenerator : MonoBehaviour
                         break;
 
                     case LevelTile.wallCorner_LT:
-                        Spawn(x, y, wallCorner_LT_tiles[UnityEngine.Random.Range(0, wallCorner_LT_tiles.Length)]) ;
+                        Spawn(x, y, wallCorner_LT_tiles[UnityEngine.Random.Range(0, wallCorner_LT_tiles.Length)]);
                         break;
 
                     case LevelTile.wallCorner_RB:
@@ -139,6 +189,10 @@ public class LevelGenerator : MonoBehaviour
 
                     case LevelTile.wallCorner_RT:
                         Spawn(x, y, wallCorner_RT_tiles[UnityEngine.Random.Range(0, wallCorner_RT_tiles.Length)]);
+                        break;
+
+                    case LevelTile.wallSingular:
+                        Spawn(x, y, wallSingularTiles[UnityEngine.Random.Range(0, wallSingularTiles.Length)]);
                         break;
 
                     case LevelTile.decor:
@@ -181,9 +235,6 @@ public class LevelGenerator : MonoBehaviour
         return count;
     }
 
-    #endregion Setups
-
-    #region Remove Unnecessary Wall
     private void RemoveSingleWalls()
     {
         //loop though every grid space
@@ -191,14 +242,9 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int y = 0; y < levelHeight - 1; y++)
             {
-
                 //if theres a wall, check the spaces around it
-                bool isWall =
-                grid[x, y] == LevelTile.wall ||
-                grid[x, y] == LevelTile.wallLeft ||
-                grid[x, y] == LevelTile.wallRight ||
-                grid[x, y] == LevelTile.wallTop ||
-                grid[x, y] == LevelTile.bottomWall;
+                bool isWall = wallCheck(x, y);
+
                 if (isWall)
                 {
                     //assume all space around wall are floors
@@ -234,58 +280,27 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private void RemoveSingleGroundWalls()
+    private bool wallCheck(int x, int y)
     {
-        //loop though every grid space
-        for (int x = 0; x < levelWidth - 1; x++)
+        if (
+        grid[x, y] == LevelTile.wall ||
+        grid[x, y] == LevelTile.wallLeft ||
+        grid[x, y] == LevelTile.wallRight ||
+        grid[x, y] == LevelTile.wallTop ||
+        grid[x, y] == LevelTile.wallCorner_LB ||
+        grid[x, y] == LevelTile.wallCorner_LT ||
+        grid[x, y] == LevelTile.wallCorner_RT ||
+        grid[x, y] == LevelTile.wallCorner_RB ||
+        grid[x, y] == LevelTile.wallBottom ||
+        grid[x, y] == LevelTile.wallSingular)
         {
-            for (int y = 0; y < levelHeight - 1; y++)
-            {
-                bool isWall =
-                grid[x, y] == LevelTile.wall ||
-                grid[x, y] == LevelTile.wallLeft ||
-                grid[x, y] == LevelTile.wallRight ||
-                grid[x, y] == LevelTile.wallTop ||
-                grid[x, y] == LevelTile.bottomWall;
-                //if theres a wall, check the spaces around it
-                if (isWall)
-                {
-                    //assume all space around wall are floors
-                    bool allFloors = true;
-                    //check each side to see if they are all floors
-                    for (int checkX = -1; checkX <= 1; checkX++)
-                    {
-                        for (int checkY = -1; checkY <= 1; checkY++)
-                        {
-                            if (x + checkX < 0 || x + checkX > levelWidth - 1 ||
-                                y + checkY < 0 || y + checkY > levelHeight - 1)
-                            {
-                                //skip checks that are out of range
-                                continue;
-                            }
-                            if ((checkX != 0 && checkY != 0) || (checkX == 0 && checkY == 0))
-                            {
-                                //skip corners and center
-                                continue;
-                            }
-                            if (grid[x + checkX, y + checkY] != LevelTile.floor)
-                            {
-                                allFloors = false;
-                            }
-                        }
-                    }
-                    if (allFloors)
-                    {
-                        grid[x, y] = LevelTile.floor;
-                    }
-                }
-            }
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
-
-    #endregion Remove Unnecessary Wall
-
-    #region Create Map
 
     private void CreateFloors()
     {
@@ -414,7 +429,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (grid[x, y] == LevelTile.wall && grid[x, y - 1] == LevelTile.floor)
                 {
-                    grid[x, y] = LevelTile.bottomWall;
+                    grid[x, y] = LevelTile.wallBottom;
                 }
             }
         }
@@ -453,27 +468,25 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
-
-    
     }
 
     private void CreateCornerWalls()
     {
-
-        for (int x = 1; x < levelWidth ; x++)
+        // LEFT BOTTOM CORNER
+        for (int x = 1; x < levelWidth; x++)
         {
-            for (int y = 1; y < levelHeight ; y++)
+            for (int y = 1; y < levelHeight; y++)
             {
-                if (grid[x, y] == LevelTile.bottomWall && grid[x, y - 1] == LevelTile.floor)
+                if (grid[x, y] == LevelTile.wallBottom && grid[x, y - 1] == LevelTile.floor)
                 {
-                    if (grid[x, y] == LevelTile.bottomWall && grid[x - 1,y] == LevelTile.floor)
+                    if (grid[x, y] == LevelTile.wallBottom && grid[x - 1, y] == LevelTile.floor)
                     {
                         grid[x, y] = LevelTile.wallCorner_LB;
                     }
-
                 }
             }
         }
+
         for (int x = 1; x < levelWidth; x++)
         {
             for (int y = 1; y < levelHeight - 1; y++)
@@ -484,29 +497,27 @@ public class LevelGenerator : MonoBehaviour
                     {
                         grid[x, y] = LevelTile.wallCorner_LT;
                     }
-
-                }
-            }
-        }
-
-        for (int x = 1; x < levelWidth -1 ; x++)
-        {
-            for (int y = 1; y < levelHeight; y++)
-            {
-                if (grid[x, y] == LevelTile.bottomWall && grid[x, y - 1] == LevelTile.floor)
-                {
-                    if (grid[x, y] == LevelTile.bottomWall && grid[x + 1, y] == LevelTile.floor)
-                    {
-                        grid[x, y] = LevelTile.wallCorner_RB;
-                    }
-
                 }
             }
         }
 
         for (int x = 1; x < levelWidth - 1; x++)
         {
-            for (int y = 1; y < levelHeight-1; y++)
+            for (int y = 1; y < levelHeight; y++)
+            {
+                if (grid[x, y] == LevelTile.wallBottom && grid[x, y - 1] == LevelTile.floor)
+                {
+                    if (grid[x, y] == LevelTile.wallBottom && grid[x + 1, y] == LevelTile.floor)
+                    {
+                        grid[x, y] = LevelTile.wallCorner_RB;
+                    }
+                }
+            }
+        }
+
+        for (int x = 1; x < levelWidth - 1; x++)
+        {
+            for (int y = 1; y < levelHeight - 1; y++)
             {
                 if (grid[x, y] == LevelTile.wallTop && grid[x, y + 1] == LevelTile.floor)
                 {
@@ -514,15 +525,10 @@ public class LevelGenerator : MonoBehaviour
                     {
                         grid[x, y] = LevelTile.wallCorner_RT;
                     }
-
                 }
             }
         }
     }
-
-    #endregion Create Map
-
-    #region Spawns
 
     private void SpawnPlayer()
     {
@@ -562,6 +568,4 @@ public class LevelGenerator : MonoBehaviour
     {
         Instantiate(toSpawn, new Vector3(x, y, 0), Quaternion.identity);
     }
-
-    #endregion Spawns
 }
