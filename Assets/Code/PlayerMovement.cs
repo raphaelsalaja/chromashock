@@ -34,15 +34,15 @@ public class PlayerMovement : MonoBehaviour
     void GetInput()
     {
         xInput = Input.GetAxis("Horizontal");
-        yInput = Input.GetAxis("Vertical"); //capture wasd and arrow controls
+        yInput = Input.GetAxis("Vertical");                                 //capture wasd and arrow controls
         GetMouseInput();
     }
     void GetMouseInput()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //position of cursor in world
-        mousePos.z = transform.position.z; //keep the z position consistant, since we're in 2d
-        mouseVector = (mousePos - transform.position).normalized; //normalized vector from player pointing to cursor
-        mouseLeft = Input.GetMouseButton(0); //check left mouse button
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);     //position of cursor in world
+        mousePos.z = transform.position.z;                                  //keep the z position consistant, since we're in 2d
+        mouseVector = (mousePos - transform.position).normalized;           //normalized vector from player pointing to cursor
+        mouseLeft = Input.GetMouseButton(0);                                //check left mouse button
     }
     void Movement()
     {

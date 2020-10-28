@@ -5,13 +5,15 @@ using UnityEngine;
 using UnityEngine.XR;
 
 
+
 public class PlayerAimWeapon : MonoBehaviour
 {
     public event EventHandler<OnShootEventArgs> OnShoot;
     public class OnShootEventArgs : EventArgs
     {
-        public Vector3 gunEndPointPosition;
+        public Vector3 GunEndPointPosition;
         public Vector3 shootPosition;
+        
     }
     
     private Transform aimTransform;
@@ -40,7 +42,7 @@ public class PlayerAimWeapon : MonoBehaviour
             aimAnimator.SetTrigger("Shoot");
             OnShoot?.Invoke(this, new OnShootEventArgs
             {
-                gunEndPointPosition = aimGunEndPointTransform.position,
+                GunEndPointPosition = aimGunEndPointTransform.position,
                 shootPosition = mousePosition,
             });
         }
