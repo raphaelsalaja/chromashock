@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public int EnemyCount;
+
     private enum LevelTile
     {
         empty,
@@ -14,6 +16,7 @@ public class LevelGenerator : MonoBehaviour
         wallCorner_LT, wallCorner_LB, wallCorner_RT, wallCorner_RB, wallSingular, wallInsideLeft, wallInsideRight,
         wallBottom,
         decor,
+        enemies,
     };
 
     private LevelTile[,] grid;
@@ -70,21 +73,25 @@ public class LevelGenerator : MonoBehaviour
     [Space]
     [Header("Player & Enemies")]
     public GameObject player;
-    public GameObject enemy;
+    public GameObject[] enemyTypes;
 
     [Space]
     [Header("Level Settings")]
+
     [Space]
     [Header("Level Properties")]
     public int levelWidth;
     public int levelHeight;
+
     [Space]
     [Header("Chances")]
     public float chanceToSpawnDecoration = 0.025f;
     public float percentToFill = 0.2f;
     public float chanceWalkerChangeDir = 0.5f;
     public float chanceWalkerSpawn = 0.05f;
+    public float chanceWalkerSpawnEnemey = 0.05f;
     public float chanceWalkerDestoy = 0.05f;
+
     [Space]
     [Header("Walker Settings")]
     public int maxWalkers = 10;
@@ -107,13 +114,17 @@ public class LevelGenerator : MonoBehaviour
         RemoveSingleWalls();
         RemvoeSingleRows();
 
-        CreateCornerWalls();
-
-        CreateBottomWalls();
+        CreateTopBottomWalls();
         CreateSideWalls();
+
+        CreateCornerWalls();
         CreateInsideWalls();
+
         AddDecorations();
         AddEnemies();
+
+        RemoveSingleWalls();
+        RemvoeSingleRows();
     }
 
     private void RemvoeSingleRows()
@@ -235,6 +246,10 @@ public class LevelGenerator : MonoBehaviour
 
                     case LevelTile.decor:
                         Spawn(x, y, decorTiles[UnityEngine.Random.Range(0, decorTiles.Length)]);
+                        break;
+
+                    case LevelTile.enemies:
+                        // SpawnEnemy(x, y, enemyTypes[UnityEngine.Random.Range(0, enemyTypes.Length)]);
                         break;
                 }
             }
@@ -538,12 +553,13 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private void CreateBottomWalls()
+    private void CreateTopBottomWalls()
     {
         for (int x = 0; x < levelWidth; x++)
         {
             for (int y = 1; y < levelHeight; y++)
             {
+                bool isWall = wallCheck(x, y);
                 if (grid[x, y] == LevelTile.wall && grid[x, y - 1] == LevelTile.floor)
                 {
                     grid[x, y] = LevelTile.wallBottom;
@@ -554,12 +570,27 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int y = 1; y < levelHeight - 1; y++)
             {
-                if (grid[x, y] == LevelTile.wall && grid[x, y + 1] == LevelTile.floor)
+                bool isWall = wallCheck(x, y);
+                if (isWall && grid[x, y + 1] == LevelTile.floor)
                 {
                     grid[x, y] = LevelTile.wallTop;
                 }
             }
         }
+
+        for (int x = 0; x < levelWidth; x++)
+        {
+            for (int y = 1; y < levelHeight - 1; y++)
+            {
+                bool isWall = wallCheck(x, y);
+                if (grid[x, y] == LevelTile.wall && (grid[x, y + 1] == LevelTile.floor && grid[x, y - 1] == LevelTile.empty))
+                {
+                    grid[x, y] = LevelTile.wallTop;
+                }
+            }
+        }
+
+
     }
 
     private void CreateSideWalls()
@@ -714,9 +745,10 @@ public class LevelGenerator : MonoBehaviour
                             }
                         }
                     }
-                    if (allFloors && UnityEngine.Random.value < 0.1)
+                    if (allFloors && UnityEngine.Random.value < chanceWalkerSpawnEnemey)
                     {
                         SpawnEnemy(x, y);
+                        EnemyCount++;
                     }
                 }
             }
@@ -733,7 +765,7 @@ public class LevelGenerator : MonoBehaviour
     private void SpawnEnemy(int x, int y)
     {
         Vector3 pos = new Vector3(x, y, 0);
-        GameObject enemyObj = Instantiate(enemy, pos, Quaternion.identity) as GameObject;
+        GameObject enemyObj = Instantiate(enemyTypes[UnityEngine.Random.Range(0, enemyTypes.Length)], pos, Quaternion.identity) as GameObject;
     }
 
     public void SpawnExit()

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spawn Point
   - Rooms
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -52,9 +53,9 @@ TagManager:
   - name: Exit
     uniqueID: 984685535
     locked: 0
-  - name: Player
-    uniqueID: 1554685341
-    locked: 0
   - name: Decor
     uniqueID: 3963042999
+    locked: 0
+  - name: Player
+    uniqueID: 1554685341
     locked: 0
