@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
+    public int health;
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +19,9 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

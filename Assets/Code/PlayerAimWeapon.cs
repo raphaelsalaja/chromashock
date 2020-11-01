@@ -23,7 +23,7 @@ public class PlayerAimWeapon : MonoBehaviour
     private void Awake()
     {
         aimTransform = transform.Find("Aim");
-        aimAnimator = aimTransform.GetComponent<Animator>();
+      //  aimAnimator = aimTransform.GetComponent<Animator>();
         aimGunEndPointTransform = aimTransform.Find("GunEndPointPosition");
     }
 
@@ -39,7 +39,7 @@ public class PlayerAimWeapon : MonoBehaviour
         {
             Vector3 mousePosition = GetMouseWorldPositionWithZ();
 
-            aimAnimator.SetTrigger("Shoot");
+          //  aimAnimator.SetTrigger("Shoot");
             OnShoot?.Invoke(this, new OnShootEventArgs
             {
                 GunEndPointPosition = aimGunEndPointTransform.position,

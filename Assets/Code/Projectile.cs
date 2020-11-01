@@ -1,27 +1,37 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Projectile : MonoBehaviour
 {
-    public float speed;
-    public float lifeTime;
+   public float speed;
+   public float lifeTime;
+   public float distance;
+   public int damage;
+   public LayerMask whatIsSolid;
 
-    public GameObject destroyEffect;
-
-    private void Start()
-    {
-        Invoke("DestroyProjectile", lifeTime);
-    }
-
-    private void Update()
-    {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
-    }
-
-    void DestroyProjectile()
-    {
-        Instantiate(destroyEffect, transform.position, Quaternion.identity);
-        Destroy(gameObject);
-    }
+   private void Start()
+   {
+        Destroy(gameObject, lifeTime);
+   } 
+  
+   private void Update()
+   {
+       RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, transform.right, distance, whatIsSolid);
+       {
+           if(hitinfo.collider != null)
+           {
+                if (hitinfo.collider.CompareTag("Enemy"))
+                {
+                    Debug.Log("ENEMY MUST TAKE DAMAGE !");
+                    hitinfo.collider.GetComponent<Enemy>().TakeDamage(damage);
+                }
+              //  Destroy(gameObject);
+            }
+       }
+       transform.Translate(Vector2.right * speed * Time.deltaTime);
+        
+   }
 }
