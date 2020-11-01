@@ -7,15 +7,16 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
    public float speed;
-   public float lifeTime;
+   public float TimeToLive = 5f;
    public float distance;
    public int damage;
    public LayerMask whatIsSolid;
 
-   private void Start()
+   public void Start()
    {
-        Destroy(gameObject, lifeTime);
-   } 
+        Destroy(gameObject, TimeToLive);
+   }
+  
   
    private void Update()
    {
@@ -28,10 +29,11 @@ public class Projectile : MonoBehaviour
                     Debug.Log("ENEMY MUST TAKE DAMAGE !");
                     hitinfo.collider.GetComponent<Enemy>().TakeDamage(damage);
                 }
-              //  Destroy(gameObject);
+               // Destroy(gameObject);
             }
        }
        transform.Translate(Vector2.right * speed * Time.deltaTime);
-        
-   }
+
+       
+    }
 }
