@@ -118,13 +118,14 @@ public class LevelGenerator : MonoBehaviour
         CreateSideWalls();
 
         CreateCornerWalls();
-        CreateInsideWalls();
+        //CreateInsideWalls();
 
-        AddDecorations();
+        //AddDecorations();
         AddEnemies();
 
         RemoveSingleWalls();
         RemvoeSingleRows();
+        AddTopWalls();
     }
 
     private void RemvoeSingleRows()
@@ -592,7 +593,22 @@ public class LevelGenerator : MonoBehaviour
 
 
     }
+    private void AddTopWalls()
+    {
 
+
+        for (int x = 0; x < levelWidth; x++)
+        {
+            for (int y = 1; y < levelHeight - 1; y++)
+            {
+                bool isWall = wallCheck(x, y);
+                if (grid[x, y] == LevelTile.wall && (grid[x, y + 1] == LevelTile.floor && grid[x, y - 1] == LevelTile.empty))
+                {
+                    grid[x, y] = LevelTile.wallTop;
+                }
+            }
+        }
+    }
     private void CreateSideWalls()
     {
         for (int x = 1; x < levelWidth; x++)

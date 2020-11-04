@@ -21,11 +21,20 @@ public class SceneReloader : MonoBehaviour
             ui.World();
             // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        if (HealthUI.HP <= 0)
+        {
+            LoadNextLevel_Menu();
+        }
     }
 
     public void LoadNextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    public void LoadNextLevel_Menu()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
     }
 
     private IEnumerator LoadLevel(int levelIndex)
@@ -35,4 +44,6 @@ public class SceneReloader : MonoBehaviour
         yield return new WaitForSeconds(1); transisition.SetTrigger("Start");
 
     }
+
+
 }

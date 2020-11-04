@@ -7,6 +7,8 @@ TagManager:
   - Spawn Point
   - Rooms
   - Platform
+  - Enemy
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Floor
   - Exit
   - Player
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -58,4 +60,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1554685341
+    locked: 0
+  - name: Weapon
+    uniqueID: 3926524151
     locked: 0
