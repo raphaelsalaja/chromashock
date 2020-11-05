@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Spawn Point
+  - Rooms
+  - Platform
+  - Enemy
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -13,11 +18,11 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
-  - 
-  - 
-  - 
-  - 
+  - Walls
+  - Floor
+  - Exit
+  - Player
+  - Enemy
   - 
   - 
   - 
@@ -40,4 +45,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 1458191391
+    locked: 0
+  - name: Walls
+    uniqueID: 1543207909
+    locked: 0
+  - name: Exit
+    uniqueID: 984685535
+    locked: 0
+  - name: Decor
+    uniqueID: 3963042999
+    locked: 0
+  - name: Player
+    uniqueID: 1554685341
+    locked: 0
+  - name: Weapon
+    uniqueID: 3926524151
     locked: 0
