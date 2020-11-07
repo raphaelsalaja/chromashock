@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ogre_idle_anim
+  m_Name: demon_big_idle_anim
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 0}
+      value: {fileID: 21300000, guid: 563846f9536d67847953a4528e8bf276, type: 3}
     - time: 0.1
-      value: {fileID: 0}
+      value: {fileID: 21300000, guid: e9a8e5500c12cce4ebb0fbe644f0b2f0, type: 3}
     - time: 0.2
-      value: {fileID: 0}
+      value: {fileID: 21300000, guid: b4b655dea607e09418df9f24406feb32, type: 3}
     - time: 0.3
-      value: {fileID: 0}
+      value: {fileID: 21300000, guid: 81d26c7edf0bce242b41bb224109ef5a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,10 +46,10 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 563846f9536d67847953a4528e8bf276, type: 3}
+    - {fileID: 21300000, guid: e9a8e5500c12cce4ebb0fbe644f0b2f0, type: 3}
+    - {fileID: 21300000, guid: b4b655dea607e09418df9f24406feb32, type: 3}
+    - {fileID: 21300000, guid: 81d26c7edf0bce242b41bb224109ef5a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

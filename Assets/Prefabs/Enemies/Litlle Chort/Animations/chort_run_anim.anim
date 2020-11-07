@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ogre_idle_anim
+  m_Name: chort_run_anim
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 0}
+      value: {fileID: 21300000, guid: b1ae952e66697834a92651dbdd46ccb2, type: 3}
     - time: 0.1
-      value: {fileID: 0}
+      value: {fileID: 21300000, guid: 6a429286b5d646a45a4f1f8ac495319c, type: 3}
     - time: 0.2
-      value: {fileID: 0}
+      value: {fileID: 21300000, guid: 0754f590ea62ac74aaa28c6e110c0e54, type: 3}
     - time: 0.3
-      value: {fileID: 0}
+      value: {fileID: 21300000, guid: 34fbb565b97184d438993a190aebb5a7, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,10 +46,10 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: b1ae952e66697834a92651dbdd46ccb2, type: 3}
+    - {fileID: 21300000, guid: 6a429286b5d646a45a4f1f8ac495319c, type: 3}
+    - {fileID: 21300000, guid: 0754f590ea62ac74aaa28c6e110c0e54, type: 3}
+    - {fileID: 21300000, guid: 34fbb565b97184d438993a190aebb5a7, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
