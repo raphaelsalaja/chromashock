@@ -2,20 +2,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening; 
+using DG.Tweening;
 
 public class Weapon : MonoBehaviour
 {
+
+    Vector3 mousePos, mouseVector;
+    public int side;
+
+    [Header("Stats")]
+    [Space]
     private float timeBtwShots;
     public float startTimeBtwShots;
-    Vector3 mousePos, mouseVector;
-    public GameObject Projectile;
-    public GameObject MuzzleFlash;
-    public Transform shotPoint;
-    public int side;
+
+    [Header("Aiming")]
+    [Space]
     public Camera MyCamera;
-    public HealthUI healthUI;
+    public Transform shotPoint;
+    public GameObject Projectile;
+
+    [Header("FX")]
+    [Space]
+    public GameObject MuzzleFlash;
     public SpriteRenderer sr;
+
+    [Header("Prefabs")]
+    [Space]
+    public HealthUI healthUI;
 
     private void Start()
     {
@@ -44,11 +57,12 @@ public class Weapon : MonoBehaviour
 
         if (timeBtwShots <= 0)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && healthUI.ammo > 0)
             {
+                FindObjectOfType<AudioManager>().Play("PlayerShot");
                 Vector3 shakeVector = new Vector3(0.1f, 0.1f, 0);
                 MyCamera.transform.DOShakePosition(1f, 0.25f, 5, 10f, false, true);
-                Instantiate(MuzzleFlash, shotPoint.position, transform.rotation); 
+                Instantiate(MuzzleFlash, shotPoint.position, transform.rotation);
                 Instantiate(Projectile, shotPoint.position, transform.rotation);
                 healthUI.ReduceAmmo();
                 Debug.Log("Hello");
