@@ -25,16 +25,26 @@ public class Projectile : MonoBehaviour
     [Space]
     public EnemyAI enemyAI;
 
+    [Header("UI")]
+    [Space]
+    public HealthUI ui;
 
     public void Start()
     {
-        enemyAI = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();
+
+        ui = GameObject.FindGameObjectWithTag("UI").GetComponent<HealthUI>();
+        //enemyAI = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();
         Invoke("DestroyProjectile", TimeToLive);
     }
 
 
     private void Update()
     {
+
+        if (ui.enemiesCount == 0)
+        {
+            // Destroy(gameObject);
+        }
         RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, transform.right, distance, whatIsSolid);
         {
             if (hitinfo.collider != null)
@@ -42,7 +52,14 @@ public class Projectile : MonoBehaviour
                 if (hitinfo.collider.CompareTag("Enemy"))
                 {
                     Debug.Log("ENEMY MUST TAKE DAMAGE !");
-                    hitinfo.collider.GetComponent<EnemyAI>().TakeDamage(damage);
+                    if (ui.endless)
+                    {
+                        hitinfo.collider.GetComponent<EnemyAI>().TakeDamage(damage + 2);
+                    }
+                    else
+                    {
+                        hitinfo.collider.GetComponent<EnemyAI>().TakeDamage(damage);
+                    }
 
                 }
                 Instantiate(HIT_FX, transform.position, Quaternion.Inverse(transform.rotation));

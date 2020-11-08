@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+using UnityEngine.SceneManagement;
 public class HealthUI : MonoBehaviour
 {
 
+    public Animator transisition;
+    public Menu menu;
     public LevelGenerator levelGenerator;
     [Header("HEALTH")]
+    [Space]
     public Image HP_FX_IMAGE, HP_IMAGE;
     public Text HP_TEXT, HP_TEXT_SHADOW;
     public static float HP = 5;
@@ -15,9 +20,10 @@ public class HealthUI : MonoBehaviour
 
 
     [Header("WORLD")]
+    [Space]
     public Text WORLD_LEVEL_TEXT;
-    public static int stage, world;
-
+    public static int stage = 0;
+    public static int world = 1;
 
     [Header("ENEMIES")]
     public int enemiesCount;
@@ -25,26 +31,48 @@ public class HealthUI : MonoBehaviour
     public Text enemies_left_shadow;
 
     [Header("WEAPONS")]
+    [Space]
     public Text AMMO_TEXT, AMMO_TEXT_SHADOW;
     public static int ammoMax = 32;
     public int ammo = 32;
     public static int reloadTime = 1;
 
 
+    [Header("LEVEL TYPE")]
+    [Space]
+    public bool endless;
+
 
     private void Start()
     {
-        HP = HP_MAX;
-        enemiesCount = levelGenerator.EnemyCount;
+        if (endless)
+        {
+            HP_MAX = 1;
+        }
+        else
+        {
+            HP = HP_MAX;
+        }
     }
     private void Update()
     {
+        enemiesCount = levelGenerator.EnemyCount;
         Health();
         Ammo();
         Enemies();
+
         HP_TEXT_SHADOW.text = HP_TEXT.text;
         AMMO_TEXT_SHADOW.text = AMMO_TEXT.text;
 
+
+        if (HP <= 0)
+        {
+            Die();
+        }
+        if (world == 3 && !endless)
+        {
+            Win();
+        }
     }
 
     public void Enemies()
@@ -55,13 +83,14 @@ public class HealthUI : MonoBehaviour
 
     public void World()
     {
-        WORLD_LEVEL_TEXT.text = world + " - " + stage;
         stage++;
-        if (stage == 10)
+        if (stage == 3)
         {
             stage = 1;
             world++;
         }
+
+        WORLD_LEVEL_TEXT.text = world + " - " + stage;
     }
 
     public void Ammo()
@@ -96,7 +125,6 @@ public class HealthUI : MonoBehaviour
 
         HP_IMAGE.fillAmount = HP / HP_MAX;
 
-        Debug.Log(HP_IMAGE.fillAmount);
         if (HP_FX_IMAGE.fillAmount > HP_IMAGE.fillAmount)
         {
             HP_FX_IMAGE.fillAmount -= HP_SPEED;
@@ -117,4 +145,23 @@ public class HealthUI : MonoBehaviour
         HP -= damage;
     }
 
+
+    public void Die()
+    {
+        StartCoroutine(LoadLevel(3));
+    }
+
+    public void Win()
+    {
+        StartCoroutine(LoadLevel(4));
+    }
+
+    private IEnumerator LoadLevel(int levelIndex)
+    {
+        SceneManager.LoadScene(levelIndex);
+
+        yield return new WaitForSeconds(1);
+
+        transisition.SetTrigger("Start");
+    }
 }

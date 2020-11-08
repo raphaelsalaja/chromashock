@@ -55,9 +55,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9203807021817752271}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
   m_Children:
   - {fileID: 1244263837143010314}
   m_Father: {fileID: 0}
@@ -126,11 +126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c460b5ccd9129a429c49a2665d5fb81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeBtwShots: 0.25
+  side: 0
+  startTimeBtwShots: 0.2
+  MyCamera: {fileID: 0}
+  shotPoint: {fileID: 1244263837143010314}
   Projectile: {fileID: 2391544086082424561, guid: 500832e9e1ccb82468dd7d97756a39ba, type: 3}
   MuzzleFlash: {fileID: 4073471347613542134, guid: 2d6a43ec88fb7f84d829af72aef57353, type: 3}
-  shotPoint: {fileID: 1244263837143010314}
-  side: 0
-  MyCamera: {fileID: 0}
-  healthUI: {fileID: 0}
   sr: {fileID: 7832468587081752961}
+  healthUI: {fileID: 0}

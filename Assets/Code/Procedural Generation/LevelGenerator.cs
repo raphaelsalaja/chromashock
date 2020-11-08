@@ -97,6 +97,7 @@ public class LevelGenerator : MonoBehaviour
     public int maxWalkers = 10;
     public int iterationSteps = 100000;
 
+
     private void Awake()
     {
         Setup();

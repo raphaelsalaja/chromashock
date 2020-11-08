@@ -99,14 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547e75f5e1b87a64f912ab5fd96ba3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
-  speed: 2
+  levelGenerator: {fileID: 0}
+  health: 2
+  speed: 2.5
   damage: 1
-  playerDistance: 10
+  playerDistance: 7.5
   stoppingDistance: 5
   retreatDistance: 2
   player: {fileID: 0}
-  startTimeBtwShots: 2
+  startTimeBtwShots: 0.5
   enemyProjectile: {fileID: 8450397880478393202, guid: 2c8b4cb5422e44f41a0ea96b21bb87db, type: 3}
   animator: {fileID: 7284405879073837456}
 --- !u!61 &36752131137525195

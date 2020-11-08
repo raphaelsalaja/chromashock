@@ -5,6 +5,8 @@ using UnityEngine.Animations;
 
 public class EnemyAI : MonoBehaviour
 {
+
+    public LevelGenerator levelGenerator;
     [Header("Stats")]
     [Space]
     public int health;
@@ -28,10 +30,15 @@ public class EnemyAI : MonoBehaviour
     [Space]
     public Animator animator;
 
-    void Start()
+    void Awake()
+    {
+        levelGenerator = GameObject.FindGameObjectWithTag("LevelGenerator").GetComponent<LevelGenerator>();
+
+        timeBtwShots = startTimeBtwShots + (UnityEngine.Random.value * 2);
+    }
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        timeBtwShots = startTimeBtwShots + (UnityEngine.Random.value * 2);
     }
 
     void Update()
@@ -70,7 +77,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (health <= 0)
         {
-
+            levelGenerator.EnemyCount--;
             FindObjectOfType<AudioManager>().Play("EnemyDeath");
             Destroy(gameObject);
             HealthUI.HP++;

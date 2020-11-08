@@ -9,6 +9,8 @@ TagManager:
   - Platform
   - Enemy
   - UI
+  - LevelGenerator
+  - Exit
   layers:
   - Default
   - TransparentFX
