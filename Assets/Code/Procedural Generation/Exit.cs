@@ -21,7 +21,7 @@ public class Exit : MonoBehaviour
     {
         GameObject ui = GameObject.Find("Canvas");
         HealthUI other = (HealthUI)ui.GetComponent(typeof(HealthUI));
-        other.World();
+        // other.World();
         ui_2 = GameObject.FindGameObjectWithTag("UI").GetComponent<HealthUI>();
     }
     private void OnTriggerEnter2D(Collider2D other)

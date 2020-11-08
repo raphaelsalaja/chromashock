@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class HealthUI : MonoBehaviour
 {
-
+    public GameController gc;
     public Animator transisition;
     public Menu menu;
     public LevelGenerator levelGenerator;
@@ -18,11 +18,12 @@ public class HealthUI : MonoBehaviour
     public static float HP_MAX = 5;
     public float HP_SPEED = 0.0005f;
 
-
     [Header("WORLD")]
     [Space]
     public Text WORLD_LEVEL_TEXT;
-    public static int stage = 0;
+    public int last_stage = 1;
+    public int last_world = 1;
+    public static int stage = 1;
     public static int world = 1;
 
     [Header("ENEMIES")]
@@ -37,26 +38,29 @@ public class HealthUI : MonoBehaviour
     public int ammo = 32;
     public static int reloadTime = 1;
 
-
     [Header("LEVEL TYPE")]
     [Space]
     public bool endless;
-
-
-    private void Start()
+    void Start()
     {
+
+        gc = GameObject.FindGameObjectWithTag("Game Controller").GetComponent<GameController>();
         if (endless)
         {
             HP_MAX = 1;
+            HP = HP_MAX;
         }
         else
         {
+            HP_MAX = 5;
             HP = HP_MAX;
         }
     }
     private void Update()
     {
         enemiesCount = levelGenerator.EnemyCount;
+        WORLD_LEVEL_TEXT.text = world + " - " + stage;
+
         Health();
         Ammo();
         Enemies();
@@ -73,6 +77,8 @@ public class HealthUI : MonoBehaviour
         {
             Win();
         }
+
+
     }
 
     public void Enemies()
@@ -90,7 +96,6 @@ public class HealthUI : MonoBehaviour
             world++;
         }
 
-        WORLD_LEVEL_TEXT.text = world + " - " + stage;
     }
 
     public void Ammo()
@@ -148,12 +153,30 @@ public class HealthUI : MonoBehaviour
 
     public void Die()
     {
+        GetStages();
+        ResetVariables();
         StartCoroutine(LoadLevel(3));
+    }
+
+    private void GetStages()
+    {
+        if (endless)
+        {
+            gc.last_stage = stage;
+            gc.last_world = world;
+        }
     }
 
     public void Win()
     {
+        ResetVariables();
         StartCoroutine(LoadLevel(4));
+    }
+
+    private void ResetVariables()
+    {
+        stage = 1;
+        world = 1;
     }
 
     private IEnumerator LoadLevel(int levelIndex)

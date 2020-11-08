@@ -378,9 +378,13 @@ PrefabInstance:
       propertyPath: MyCamera
       value: 
       objectReference: {fileID: 7100779961190847714}
+    - target: {fileID: 6981717475650957682, guid: ac613ef733f71f9458faa528a30604dc, type: 3}
+      propertyPath: startTimeBtwShots
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 9203807021817752271, guid: ac613ef733f71f9458faa528a30604dc, type: 3}
       propertyPath: m_Name
-      value: ShotGun
+      value: AR
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac613ef733f71f9458faa528a30604dc, type: 3}

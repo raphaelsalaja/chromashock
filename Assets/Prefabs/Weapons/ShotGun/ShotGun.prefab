@@ -103,7 +103,7 @@ SpriteRenderer:
   m_SortingLayerID: -368443145
   m_SortingLayer: 6
   m_SortingOrder: -3
-  m_Sprite: {fileID: 5930647878711084248, guid: 307c7b21da6546b48bb40e9d30236bf0, type: 3}
+  m_Sprite: {fileID: -8282757378150667643, guid: 307c7b21da6546b48bb40e9d30236bf0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   side: 0
-  startTimeBtwShots: 0.2
+  startTimeBtwShots: 0.1
   MyCamera: {fileID: 0}
   shotPoint: {fileID: 1244263837143010314}
   Projectile: {fileID: 2391544086082424561, guid: 500832e9e1ccb82468dd7d97756a39ba, type: 3}

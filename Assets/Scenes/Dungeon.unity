@@ -327,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27901a182b1277e42ad9fab7f4f4c594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gc: {fileID: 0}
   transisition: {fileID: 448083694}
   menu: {fileID: 0}
   levelGenerator: {fileID: 1628191060}
@@ -336,6 +337,8 @@ MonoBehaviour:
   HP_TEXT_SHADOW: {fileID: 1724471821}
   HP_SPEED: 0.0005
   WORLD_LEVEL_TEXT: {fileID: 1262692616}
+  last_stage: 1
+  last_world: 1
   enemiesCount: 10
   enemies_left: {fileID: 204731778}
   enemies_left_shadow: {fileID: 1135367650}
@@ -1023,7 +1026,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1 - 0
+  m_Text: 1 - 1
 --- !u!222 &1262692617
 CanvasRenderer:
   m_ObjectHideFlags: 0

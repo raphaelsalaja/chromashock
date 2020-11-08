@@ -7,11 +7,16 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public Animator transisition;
+
     public void PlayGame()
     {
         StartCoroutine(LoadLevel(5));
     }
     public void Endless()
+    {
+        StartCoroutine(LoadLevel(7));
+    }
+    public void GoNext()
     {
         StartCoroutine(LoadLevel(6));
     }
