@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "You are a man and goblins, devils and orcs want to kill you.\n\nplease
+  m_Text: "You are a man. \n\ngoblins, devils and orcs want to kill you.\n\nplease
     try not to die. \n\nbecause if you die everyone else will die becasue you died.
     \n\nso please dont die"
 --- !u!222 &64494632
