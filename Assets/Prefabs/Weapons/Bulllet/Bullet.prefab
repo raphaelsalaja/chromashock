@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7191400168539582999}
   - component: {fileID: 4521936049054683909}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,12 +98,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   TimeToLive: 5
-  distance: 0.1
+  distance: 0.5
   damage: 1
   HIT_FX: {fileID: 432241718726631448, guid: 8cc62f9ae39b5eb43b4e082182a1f0dd, type: 3}
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 4352
+  enemyAI: {fileID: 0}
 --- !u!95 &4521936049054683909
 Animator:
   serializedVersion: 3

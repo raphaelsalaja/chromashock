@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2479814703626078078}
   m_Layer: 10
   m_Name: Exit
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51832c91b3add0d4cbbe6a0b61a3c775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelGenerator: {fileID: 0}
   transisition: {fileID: 4205432809639573437, guid: ad173c4a163426c4d89e88bdca1162ff, type: 3}
+  chanceWalkerSpawnEnemey: 0.05
 --- !u!95 &-2479814703626078078
 Animator:
   serializedVersion: 3

@@ -9,6 +9,9 @@ TagManager:
   - Platform
   - Enemy
   - UI
+  - LevelGenerator
+  - Exit
+  - Game Controller
   layers:
   - Default
   - TransparentFX
@@ -63,4 +66,10 @@ TagManager:
     locked: 0
   - name: Weapon
     uniqueID: 3926524151
+    locked: 0
+  - name: UI
+    uniqueID: 3532225711
+    locked: 0
+  - name: Mouse
+    uniqueID: 3854287181
     locked: 0
